@@ -10,3 +10,7 @@ logs/
 
 # Configurations
 hook/maintenance/setup.config
+configurations/*.config
+
+# Credentials
+credentials/*

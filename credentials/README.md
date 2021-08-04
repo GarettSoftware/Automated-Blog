@@ -1,0 +1,1 @@
+### Credentials json file should be placed here both locally and on VM

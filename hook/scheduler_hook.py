@@ -24,6 +24,11 @@ SOFTWARE.
 
 from datetime import datetime
 
+from configparser import ConfigParser
+from configurations.config import get_config
+
+from blog.main import BlogFactory
+
 """
 Feel free to copy the code below into other files in your project to enable logging to hooks/logs.
 Remember to use logger.info('Your message') or logger.warning('Your warning').
@@ -50,16 +55,9 @@ class SchedulerHook:
         logger.info("Scheduled script started.")
         start_time: datetime = datetime.now()
 
-        logger.info("Hello World!")
-        """
-        Example 1
-        logger.info("Hello World!")
-        """
-        """
-        Example 2
-        from your_code import main
-        main()
-        """
+        config: ConfigParser = get_config()
+        blog_factory: BlogFactory = BlogFactory(config)
+        blog_factory.create_blog_post()
 
         end_time: datetime = datetime.now()
         elapsed_time = end_time - start_time
