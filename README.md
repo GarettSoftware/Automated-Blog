@@ -65,9 +65,9 @@ https://console.cloud.google.com/iam-admin/
       - `nvidia-tesla-p100-vws`
       - `nvidia-tesla-p4-vws`
     - Pricing https://cloud.google.com/compute/gpus-pricing
-5) Do you have a zone preference (where the VM will be located)?
-    - Zone must be available for the requested hardware.
-    - If you do not, a zone will be selected for you.
+5) Do you have a zone preference (where the VM will be located)? https://cloud.google.com/compute/docs/regions-zones
+   - Zone must be available for the requested hardware.
+   - If you do not, a zone will be selected for you.
 6) What boot disk size do you require?
 7) Would you like to have an SSD boot device? If you don't know, probably not.
 8) What would you like the VM username to be?
