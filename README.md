@@ -75,7 +75,7 @@ https://console.cloud.google.com/iam-admin/
    - e.g. `3.7.3`
 10) What is the name of the git branch you want the VM to execute?
     - Default is `master`
-11) What is the url of the repository you created above (forked or existing)?
+11) What is the url of the repository you created above?
     - e.g., `git@github.com:GarettSoftware/GCP-Scheduled-VM-Hook.git` (SHOULD NOT BE THIS ONE)
 12) What time zone would you like to be the basis for the schedule?
     - e.g., `UTC`
