@@ -41,7 +41,7 @@ echo "LOCAL_FILE_PATH set to $LOCAL_FILE_PATH"
 
 # Download the file from the VM to the local machine
 gcloud compute scp "$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" "$LOCAL_FILE_PATH" --zone="$ZONE" \
-|| { echo "ERROR: Failed to copy the logs.zip file off the VM"; return 1; }
+|| { echo "ERROR: Failed to copy the file off the VM"; return 1; }
 
 # Shut down the VM
 . ./common/stop_vm.sh  || { echo "Failed to stop VM. Check your setup.config file."; return 1; }
