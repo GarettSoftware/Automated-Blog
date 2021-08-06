@@ -22,9 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Get the script directory (useful for moving files to and from VM)
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
 # Start up the VM
 . ./common/start_vm.sh || { echo "Failed to start VM. Check your setup.config file."; return 1; }
 
@@ -38,12 +35,12 @@ echo "Please enter the VM file path:"
 read -r VM_FILE_PATH
 echo "VM_FILE_PATH set to $VM_FILE_PATH"
 
-echo "Please enter the local file path relative this script's directory:"
+echo "Please enter the local file path:"
 read -r LOCAL_FILE_PATH
 echo "LOCAL_FILE_PATH set to $LOCAL_FILE_PATH"
 
 # Download the file from the VM to the local machine
-gcloud compute scp "$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" "$SCRIPT_DIR""$LOCAL_FILE_PATH" --zone="$ZONE" \
+gcloud compute scp "$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" "$LOCAL_FILE_PATH" --zone="$ZONE" \
 || { echo "ERROR: Failed to copy the logs.zip file off the VM"; return 1; }
 
 # Shut down the VM
