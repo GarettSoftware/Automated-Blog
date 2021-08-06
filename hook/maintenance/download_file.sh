@@ -40,7 +40,7 @@ read -r LOCAL_FILE_PATH
 echo "LOCAL_FILE_PATH set to $LOCAL_FILE_PATH"
 
 # Download the file from the VM to the local machine
-gcloud compute scp "$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" "$LOCAL_FILE_PATH" --zone="$ZONE" \
+gcloud compute scp "$VM_USERNAME"@"$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" "$LOCAL_FILE_PATH" --zone="$ZONE" \
 || { echo "ERROR: Failed to copy the file off the VM"; return 1; }
 
 # Shut down the VM

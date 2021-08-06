@@ -40,7 +40,7 @@ read -r VM_FILE_PATH
 echo "VM_FILE_PATH set to $VM_FILE_PATH"
 
 # Upload the file from the local machine to the VM
-gcloud compute scp "$LOCAL_FILE_PATH" "$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" --zone="$ZONE" \
+gcloud compute scp "$LOCAL_FILE_PATH" "$VM_USERNAME"@"$COMPUTE_INSTANCE_NAME":"$VM_FILE_PATH" --zone="$ZONE" \
 || { echo "ERROR: Failed to copy the file to the VM"; return 1; }
 
 # Shut down the VM
