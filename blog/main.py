@@ -8,6 +8,8 @@ from configparser import ConfigParser
 
 from transformers import pipeline
 
+from urllib.parse import urljoin, urlparse
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -50,7 +52,7 @@ class BlogFactory:
         for topic in topics:
             # Find the link to the original article
             original_link = topic.find_parent('a').get('href')
-            original_link = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+            original_link = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[^&]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
                                        original_link)[0]
             topic_list.append({
                 'title': f"{topic.text}",
@@ -76,7 +78,10 @@ class BlogFactory:
                                 min_length=64,
                                 max_length=self.config.getint('General', 'max_seq_length'))[0]['generated_text']
             while len(content) < desired_length:
-                content += generator(content[-self.config.getint('General', 'max_seq_length'):])[0]['generated_text']
+                content += generator(content[-self.config.getint('General', 'max_seq_length'):],
+                                     do_sample=True,
+                                     min_length=64,
+                                     max_length=self.config.getint('General', 'max_seq_length'))[0]['generated_text']
             content_dictionary = {
                 'title': f"{topic['title']} (FAKE BLOG)",
                 'link': topic['link'],
