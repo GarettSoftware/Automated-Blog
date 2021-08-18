@@ -8,8 +8,6 @@ from configparser import ConfigParser
 
 from transformers import pipeline
 
-from urllib.parse import urljoin, urlparse
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -81,7 +79,8 @@ class BlogFactory:
                 content += generator(content[-self.config.getint('General', 'max_seq_length'):],
                                      do_sample=True,
                                      min_length=64,
-                                     max_length=self.config.getint('General', 'max_seq_length'))[0]['generated_text']
+                                     max_length=self.config.getint('General', 'max_seq_length'))[0]['generated_text'][
+                           -self.config.getint('General', 'max_seq_length'):]
             content_dictionary = {
                 'title': f"{topic['title']} (FAKE BLOG)",
                 'link': topic['link'],
