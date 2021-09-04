@@ -81,7 +81,7 @@ class BlogFactory:
                                      min_length=64,
                                      max_length=self.config.getint('General', 'max_seq_length'))[0]['generated_text'][
                            -self.config.getint('General', 'max_seq_length'):]
-            content = re.findall('(.+[.!?])', content)[0]
+            content = re.findall('(.+[.!?])', content, re.DOTALL)[0]
             content_dictionary = {
                 'title': f"{topic['title']} (FAKE BLOG)",
                 'link': topic['link'],
