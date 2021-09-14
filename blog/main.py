@@ -68,7 +68,7 @@ class BlogFactory:
         if dl:
             desired_length = dl
 
-        generator = pipeline('text-generation', model='EleutherAI/gpt-neo-2.7B')
+        generator = pipeline('text-generation', model='EleutherAI/gpt-j-6B')
         content_list = []
         for topic in topic_list[:self.config.getint('General', 'post_count')]:
             content = generator(topic['title'],

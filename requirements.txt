@@ -1,6 +1,6 @@
 # numpy==1.20.3 Example requirement
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
 requests==2.26.0
-transformers==4.9.1
+git+https://github.com/huggingface/transformers.git
 torch==1.9.0
-google-cloud-storage==1.41.1
+google-cloud-storage==1.42.1
