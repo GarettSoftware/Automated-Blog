@@ -2,6 +2,8 @@ import json
 import re
 import string
 
+import torch
+
 from typing import List
 
 from configparser import ConfigParser
@@ -68,7 +70,9 @@ class BlogFactory:
         if dl:
             desired_length = dl
 
-        generator = pipeline('text-generation', model='EleutherAI/gpt-j-6B')
+        generator = pipeline('text-generation', model='EleutherAI/gpt-j-6B',
+                             # Use float16 to reduce system requirements.
+                             revision='float16', torch_dtype=torch.float16, low_cpu_mem_usage=True)
         content_list = []
         for topic in topic_list[:self.config.getint('General', 'post_count')]:
             content = generator(topic['title'],
